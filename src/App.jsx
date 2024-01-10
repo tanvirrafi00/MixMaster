@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { loader as landingLoader } from "./pages/Landing";
+
 import {
   HomeLayout,
   About,
@@ -8,16 +10,20 @@ import {
   NewsLetter,
   Cocktail,
 } from "./pages";
+import SingleError from "./SingleError";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+
+    errorElement: <Error />,
     children: [
       {
-        index:true,
+        index: true,
+        loader: landingLoader,
+        errorElement: <SingleError />,
         element: <Landing />,
-      
       },
       {
         path: "cocktail",
